@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에스라 풋볼 클럽 | EZRA FOOTBALL CLUB</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --off-white: #f8f7f4;
+  --light: #eeece8;
+  --border: #e2dfd9;
+  --mid: #9b9590;
+  --ink: #1a1916;
+  --green: #1a6b3a;
+  --green-hover: #155c30;
+  --green-light: #eaf3ed;
+  --green-mid: #c3dfc9;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Noto Sans KR', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+  height: 66px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6%;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 11px;
+  text-decoration: none;
+}
+.nav-logo-mark {
+  width: 34px; height: 34px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.nav-logo-text {
+  display: flex; flex-direction: column; line-height: 1.1;
+}
+.nav-logo-kr {
+  font-family: var(--sans);
+  font-size: .82rem; font-weight: 700;
+  color: var(--ink); letter-spacing: .03em;
+}
+.nav-logo-en {
+  font-family: var(--mono);
+  font-size: .65rem; color: var(--mid);
+  letter-spacing: .12em; text-transform: uppercase;
+}
+.nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  text-decoration: none; font-size: .83rem; font-weight: 500;
+  color: var(--mid); letter-spacing: .04em;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  background: var(--green) !important;
+  color: white !important;
+  padding: 9px 22px;
+  border-radius: 100px;
+}
+.nav-cta:hover { background: var(--green-hover) !important; color: white !important; }
+
+/* ── HERO ── */
+#hero {
+  padding-top: 66px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  align-items: center;
+  background: var(--off-white);
+  overflow: hidden;
+}
+.hero-left { padding: 80px 6% 80px 8%; }
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .72rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--green);
+  background: var(--green-light); border: 1px solid var(--green-mid);
+  padding: 5px 14px; border-radius: 100px;
+  margin-bottom: 2rem;
+  animation: fadeUp .7s ease both;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 4vw, 4rem);
+  line-height: 1.1; color: var(--ink);
+  margin-bottom: 1.5rem;
+  animation: fadeUp .7s .12s ease both;
+}
+.hero-title em { font-style: italic; color: var(--green); }
+
+.hero-sub {
+  font-size: .97rem; color: var(--mid);
+  line-height: 1.85; font-weight: 300;
+  max-width: 420px; margin-bottom: 2.5rem;
+  animation: fadeUp .7s .22s ease both;
+}
+
+.hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  animation: fadeUp .7s .32s ease both;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 13px 28px; border-radius: 100px;
+  font-size: .88rem; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  font-family: var(--sans); transition: all .22s;
+}
+.btn-green { background: var(--green); color: white; }
+.btn-green:hover { background: var(--green-hover); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,107,58,.22); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--ink); }
+
+.hero-stats {
+  display: flex; gap: 2.5rem;
+  margin-top: 3.5rem; padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  animation: fadeUp .7s .42s ease both;
+}
+.hstat-num {
+  font-family: var(--serif); font-size: 1.9rem;
+  color: var(--ink); line-height: 1;
+}
+.hstat-label {
+  font-size: .75rem; color: var(--mid);
+  font-weight: 500; letter-spacing: .04em; margin-top: 3px;
+}
+
+/* Hero right */
+.hero-right {
+  height: 100%; min-height: 600px;
+  background: var(--light);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.field-art {
+  position: relative; width: 340px; height: 340px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ring {
+  position: absolute; border-radius: 50%;
+  border: 1.5px solid var(--green-mid);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+.ring-1 { width: 340px; height: 340px; animation: spin 35s linear infinite; }
+.ring-1::after { content:''; position:absolute; top:50%; left:0; right:0; height:1.5px; background:var(--green-mid); transform:translateY(-50%); }
+.ring-2 { width: 240px; height: 240px; animation: spin 25s linear infinite reverse; opacity:.5; }
+.ring-3 { width: 130px; height: 130px; animation: spin 15s linear infinite; opacity:.4; }
+.field-center {
+  position: relative; z-index: 2;
+  width: 78px; height: 78px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 16px 50px rgba(26,107,58,.28);
+}
+.float-card {
+  position: absolute;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  box-shadow: 0 6px 28px rgba(0,0,0,.07);
+}
+.fc1 { top: 10%; left: 0; animation: floatY 4s ease-in-out infinite; }
+.fc2 { bottom: 12%; right: 0; animation: floatY 4s ease-in-out infinite; animation-delay: -2s; }
+.fc-num { font-family: var(--serif); font-size: 1.4rem; color: var(--green); }
+.fc-label { font-size: .7rem; color: var(--mid); font-weight: 500; }
+
+@keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── SECTION BASE ── */
+.section-wrap { padding: 100px 8%; }
+.section-header { margin-bottom: 56px; }
+.section-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: .7rem;
+  color: var(--green); letter-spacing: .16em;
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+.section-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--green); }
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  line-height: 1.15; color: var(--ink);
+}
+.section-title em { font-style: italic; color: var(--green); }
+.section-desc {
+  font-size: .93rem; color: var(--mid);
+  margin-top: .8rem; font-weight: 300; line-height: 1.75;
+  max-width: 480px;
+}
+
+/* ── PROGRAMS ── */
+#programs { background: var(--white); }
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+}
+.prog-card {
+  background: var(--white);
+  padding: 2.4rem 2rem;
+  position: relative;
+  transition: background .25s;
+  cursor: default;
+}
+.prog-card:hover { background: var(--green-light); }
+.prog-card:hover .prog-cta { color: var(--green); }
+
+.prog-idx {
+  font-family: var(--mono); font-size: .68rem;
+  color: var(--border); letter-spacing: .1em;
+  margin-bottom: 1.4rem;
+}
+.prog-age-badge {
+  display: inline-block;
+  background: var(--green-light); border: 1px solid var(--green-mid);
+  color: var(--green); font-size: .72rem; font-weight: 600;
+  padding: 3px 12px; border-radius: 100px;
+  margin-bottom: 1rem; letter-spacing: .04em;
+}
+.prog-name {
+  font-family: var(--serif);
+  font-size: 1.35rem; color: var(--ink);
+  margin-bottom: .6rem; line-height: 1.2;
+}
+.prog-desc {
+  font-size: .85rem; color: var(--mid);
+  line-height: 1.7; margin-bottom: 1.6rem;
+  font-weight: 300;
+}
+.prog-footer {
+  display: flex; align-items: flex-end; justify-content: space-between;
+}
+.prog-price {
+  font-family: var(--serif); font-size: 1.6rem; color: var(--ink);
+}
+.prog-price-unit { font-family: var(--sans); font-size: .78rem; color: var(--mid); font-weight: 400; }
+.prog-cta {
+  font-size: .8rem; font-weight: 600;
+  color: var(--mid); letter-spacing: .04em;
+  transition: color .2s;
+}
+
+/* Bottom row — 3 col spanning */
+.programs-bottom {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 14px 14px; overflow: hidden;
+}
+
+/* ── GALLERY ── */
+#gallery { background: var(--off-white); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 260px 200px;
+  gap: 10px;
+}
+.gal-item {
+  border-radius: 10px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; position: relative;
+  transition: transform .3s, box-shadow .3s;
+  cursor: pointer;
+}
+.gal-item:hover { transform: scale(1.02); z-index: 2; box-shadow: 0 16px 50px rgba(0,0,0,.12); }
+.gal-item:hover .gal-caption { opacity: 1; }
+
+.gal-item:nth-child(1) { grid-column: span 5; background: linear-gradient(135deg, #0f4226 0%, #1a6b3a 100%); }
+.gal-item:nth-child(2) { grid-column: span 4; background: linear-gradient(135deg, #1e2a1e 0%, #2d3d2d 100%); }
+.gal-item:nth-child(3) { grid-column: span 3; background: linear-gradient(135deg, #0b3320 0%, #155c30 100%); }
+.gal-item:nth-child(4) { grid-column: span 3; background: linear-gradient(135deg, #1a1916 0%, #2e2b27 100%); }
+.gal-item:nth-child(5) { grid-column: span 5; background: linear-gradient(135deg, #0d3d1f 0%, #1a6b3a 80%); }
+.gal-item:nth-child(6) { grid-column: span 4; background: linear-gradient(135deg, #1e2a1e 0%, #243324 100%); }
+
+.gal-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.65), transparent);
+  color: white; font-size: .78rem; font-weight: 500;
+  padding: 1.6rem .9rem .7rem;
+  opacity: 0; transition: opacity .3s;
+}
+.gal-emoji { font-size: 2.8rem; filter: drop-shadow(0 2px 8px rgba(0,0,0,.3)); }
+
+/* ── LOCATION ── */
+#location { background: var(--white); }
+.location-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: start;
+}
+.info-block { margin-bottom: 2.2rem; }
+.info-label {
+  font-family: var(--mono); font-size: .7rem;
+  color: var(--green); letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: .6rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.info-label::before { content:''; display:block; width:18px; height:1px; background:var(--green); }
+.info-value {
+  font-size: .93rem; color: var(--ink);
+  line-height: 1.8; font-weight: 400;
+}
+.info-value span { color: var(--mid); font-weight: 300; }
+
+.schedule-table {
+  width: 100%; border-collapse: collapse; margin-top: .4rem;
+}
+.schedule-table tr { border-bottom: 1px solid var(--border); }
+.schedule-table tr:last-child { border-bottom: none; }
+.schedule-table td { padding: 11px 0; font-size: .88rem; vertical-align: top; }
+.schedule-table td:first-child { color: var(--ink); font-weight: 500; width: 45%; }
+.schedule-table td:last-child { color: var(--mid); font-weight: 300; }
+
+.map-box {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.map-placeholder {
+  height: 280px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; color: var(--mid);
+  font-size: .85rem; font-weight: 300;
+}
+.map-placeholder .map-icon { font-size: 2.4rem; opacity: .6; }
+.map-info {
+  padding: 20px 22px;
+  border-top: 1px solid var(--border);
+}
+.map-info-name {
+  font-family: var(--serif);
+  font-size: 1.1rem; color: var(--ink);
+  margin-bottom: 4px;
+}
+.map-info-addr { font-size: .83rem; color: var(--mid); font-weight: 300; }
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--off-white);
+  padding: 100px 8%;
+}
+.contact-inner { max-width: 640px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 2rem; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field.full { grid-column: 1/-1; }
+.form-label {
+  font-size: .72rem; font-weight: 600;
+  color: var(--mid); letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.form-input, .form-select, .form-textarea {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  color: var(--ink); padding: 12px 15px;
+  border-radius: 8px; font-size: .92rem;
+  font-family: var(--sans); outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(26,107,58,.08);
+}
+.form-select option { background: white; }
+.form-textarea { resize: vertical; min-height: 110px; }
+.form-submit {
+  margin-top: 1.4rem;
+  padding: 14px 36px;
+  background: var(--green); color: white;
+  border: none; border-radius: 100px;
+  font-size: .92rem; font-weight: 700;
+  font-family: var(--sans); cursor: pointer;
+  transition: background .2s, transform .2s, box-shadow .2s;
+  letter-spacing: .02em;
+}
+.form-submit:hover { background: var(--green-hover); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,107,58,.22); }
+.form-note {
+  font-size: .78rem; color: var(--mid); margin-top: .8rem;
+  font-weight: 300;
+}
+.form-success {
+  display: none; margin-top: 1rem;
+  background: var(--green-light); border: 1px solid var(--green-mid);
+  color: var(--green); padding: 12px 18px; border-radius: 8px;
+  font-size: .88rem; font-weight: 500;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 48px 8%;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+.footer-logo-wrap { display: flex; align-items: center; gap: 10px; }
+.footer-logo-mark {
+  width: 32px; height: 32px; background: var(--green);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: .9rem;
+}
+.footer-logo-kr { font-size: .88rem; font-weight: 700; color: white; }
+.footer-logo-en { font-family: var(--mono); font-size: .62rem; color: rgba(255,255,255,.4); letter-spacing: .1em; }
+.footer-links { display: flex; gap: 1.8rem; }
+.footer-links a { font-size: .8rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: rgba(255,255,255,.85); }
+.footer-copy { font-size: .75rem; color: rgba(255,255,255,.28); }
+
+/* ── TEAM ── */
+#team { background: var(--ink); }
+#team .section-eyebrow { color: var(--green-mid); }
+#team .section-eyebrow::before { background: var(--green-mid); }
+#team .section-title { color: white; }
+#team .section-title em { color: var(--green-mid); }
+#team .section-desc { color: rgba(255,255,255,.45); }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.team-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px; padding: 2rem 1.8rem;
+  transition: background .25s, border-color .25s, transform .25s;
+  cursor: default;
+}
+.team-card:hover {
+  background: rgba(26,107,58,.15);
+  border-color: rgba(195,223,201,.25);
+  transform: translateY(-4px);
+}
+.team-card-icon {
+  width: 52px; height: 52px;
+  background: rgba(26,107,58,.3);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 1.4rem;
+}
+.team-card-name {
+  font-family: var(--serif);
+  font-size: 1.2rem; color: white;
+  margin-bottom: .5rem;
+}
+.team-card-age {
+  display: inline-block;
+  font-family: var(--mono); font-size: .68rem;
+  color: var(--green-mid); letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: .8rem;
+}
+.team-card-desc {
+  font-size: .85rem; color: rgba(255,255,255,.45);
+  line-height: 1.7; font-weight: 300;
+}
+.team-card-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem;
+}
+.team-tag {
+  font-size: .7rem; font-weight: 500;
+  background: rgba(195,223,201,.1);
+  border: 1px solid rgba(195,223,201,.2);
+  color: var(--green-mid);
+  padding: 3px 10px; border-radius: 100px;
+}
+
+.team-banner {
+  background: var(--green);
+  border-radius: 14px;
+  padding: 2.4rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+}
+.team-banner-text h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem; color: white; margin-bottom: .4rem;
+}
+.team-banner-text p {
+  font-size: .88rem; color: rgba(255,255,255,.75); font-weight: 300;
+}
+.team-banner-btn {
+  background: white; color: var(--green);
+  padding: 12px 28px; border-radius: 100px;
+  font-size: .88rem; font-weight: 700;
+  text-decoration: none; white-space: nowrap;
+  transition: background .2s, transform .2s;
+  display: inline-block;
+}
+.team-banner-btn:hover { background: var(--off-white); transform: translateY(-2px); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: .08s; }
+.reveal-d2 { transition-delay: .16s; }
+.reveal-d3 { transition-delay: .24s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 60px 6%; }
+  .programs-grid, .programs-bottom { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gal-item { grid-column: span 1 !important; height: 180px; }
+  .location-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  nav ul { display: none; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">⚽</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-kr">에스라 풋볼 클럽</span>
+      <span class="nav-logo-en">EZRA FOOTBALL CLUB</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#programs">프로그램</a></li>
+    <li><a href="#team">팀 운영</a></li>
+    <li><a href="#gallery">갤러리</a></li>
+    <li><a href="#location">오시는 길</a></li>
+    <li><a href="#contact" class="nav-cta">수강 신청</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">⚽ 에스라 풋볼 클럽</div>
+    <h1 class="hero-title">
+      축구의 즐거움,<br>
+      <em>제대로 배우다</em>
+    </h1>
+    <p class="hero-sub">
+      어린이부터 성인까지, 수준별 맞춤 레슨으로<br>
+      기초부터 실전까지 체계적으로 가르칩니다.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-green">무료 체험 신청 →</a>
+      <a href="#programs" class="btn btn-outline">프로그램 보기</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hstat-num">300+</div>
+        <div class="hstat-label">수강생</div>
+      </div>
+      <div>
+        <div class="hstat-num">8년</div>
+        <div class="hstat-label">운영 경력</div>
+      </div>
+      <div>
+        <div class="hstat-num">96%</div>
+        <div class="hstat-label">재등록률</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="field-art">
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="field-center">⚽</div>
+    </div>
+    <div class="float-card fc1">
+      <div class="fc-num">5–18세</div>
+      <div class="fc-label">전 연령 수업 운영</div>
+    </div>
+    <div class="float-card fc2">
+      <div class="fc-num">1:1</div>
+      <div class="fc-label">개인 레슨 가능</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-eyebrow reveal">PROGRAMS</div>
+      <h2 class="section-title reveal reveal-d1">연령별 맞춤<br><em>레슨 프로그램</em></h2>
+      <p class="section-desc reveal reveal-d2">단계적인 커리큘럼으로 기초부터 실전까지, 누구나 자신에게 맞는 수업을 찾을 수 있습니다.</p>
+    </div>
+
+    <div class="programs-grid reveal">
+      <div class="prog-card">
+        <div class="prog-idx">01</div>
+        <div class="prog-age-badge">5 – 8세</div>
+        <div class="prog-name">키즈 클래스</div>
+        <p class="prog-desc">놀이 중심의 수업으로 공과 친해지고 기초 운동 능력과 협동심을 자연스럽게 키웁니다.</p>
+        <div class="prog-footer">
+          <div>
+            <div class="prog-price">50,000<span class="prog-price-unit"> 원 / 월</span></div>
+          </div>
+          <div class="prog-cta">자세히 →</div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-idx">02</div>
+        <div class="prog-age-badge">9 – 13세</div>
+        <div class="prog-name">주니어 클래스</div>
+        <p class="prog-desc">드리블·패스·슈팅 핵심 기술을 단계적으로 익히고 실전 게임을 통해 전술 이해력을 높입니다.</p>
+        <div class="prog-footer">
+          <div>
+            <div class="prog-price">70,000<span class="prog-price-unit"> 원 / 월</span></div>
+          </div>
+          <div class="prog-cta">자세히 →</div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-idx">03</div>
+        <div class="prog-age-badge">14 – 18세</div>
+        <div class="prog-name">유스 클래스</div>
+        <p class="prog-desc">포지션별 심화 훈련과 체력 강화 프로그램. 실전 경기 분석으로 선수로서의 자질을 키웁니다.</p>
+        <div class="prog-footer">
+          <div>
+            <div class="prog-price">90,000<span class="prog-price-unit"> 원 / 월</span></div>
+          </div>
+          <div class="prog-cta">자세히 →</div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-idx">04</div>
+        <div class="prog-age-badge">19세 이상</div>
+        <div class="prog-name">성인 클래스</div>
+        <p class="prog-desc">직장인을 위한 저녁·주말 클래스. 기초부터 팀 플레이까지 수준에 맞게 진행합니다.</p>
+        <div class="prog-footer">
+          <div>
+            <div class="prog-price">80,000<span class="prog-price-unit"> 원 / 월</span></div>
+          </div>
+          <div class="prog-cta">자세히 →</div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-idx">05</div>
+        <div class="prog-age-badge">맞춤 과정</div>
+        <div class="prog-name">1:1 개인 레슨</div>
+        <p class="prog-desc">코치와 단독 진행하는 맞춤 훈련. 약점 집중 개선으로 빠른 실력 향상을 원하는 분께 추천합니다.</p>
+        <div class="prog-footer">
+          <div>
+            <div class="prog-price">50,000<span class="prog-price-unit"> 원 / 회</span></div>
+          </div>
+          <div class="prog-cta">자세히 →</div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-idx">06</div>
+        <div class="prog-age-badge">단기 특강</div>
+        <div class="prog-name">방학 집중 과정</div>
+        <p class="prog-desc">방학 기간 2–4주 집중 훈련으로 기초 기술을 빠르게 완성하고 싶은 분을 위한 특별 프로그램.</p>
+        <div class="prog-footer">
+          <div>
+            <div class="prog-price">120,000<span class="prog-price-unit"> 원 / 4주</span></div>
+          </div>
+          <div class="prog-cta">자세히 →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-eyebrow reveal">TEAM</div>
+      <h2 class="section-title reveal reveal-d1">에스라 풋볼 클럽<br><em>팀 운영</em></h2>
+      <p class="section-desc reveal reveal-d2">개인 레슨을 넘어 팀으로 함께 성장합니다. 연령별 팀을 구성해 정기 훈련과 대회 출전까지 체계적으로 지원합니다.</p>
+    </div>
+
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="team-card-icon">👧</div>
+        <div class="team-card-age">U-8 · U-10</div>
+        <div class="team-card-name">유소년 팀</div>
+        <p class="team-card-desc">처음 팀 스포츠를 경험하는 어린이들을 위한 팀. 규칙과 협동을 배우며 축구의 즐거움을 키웁니다.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">주 2회 훈련</span>
+          <span class="team-tag">정기 친선경기</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-icon">🧒</div>
+        <div class="team-card-age">U-12 · U-14</div>
+        <div class="team-card-name">주니어 팀</div>
+        <p class="team-card-desc">포지션 역할을 익히고 팀 전술을 배우는 단계. 지역 유소년 리그 출전을 목표로 훈련합니다.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">주 3회 훈련</span>
+          <span class="team-tag">리그 출전</span>
+          <span class="team-tag">포지션 교육</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-icon">🧑</div>
+        <div class="team-card-age">U-16 · U-18</div>
+        <div class="team-card-name">유스 팀</div>
+        <p class="team-card-desc">본격적인 선수 육성 과정. 전술 분석, 체력 훈련, 대회 출전을 통해 높은 수준의 경기력을 목표로 합니다.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">주 4회 훈련</span>
+          <span class="team-tag">전국 대회 출전</span>
+          <span class="team-tag">영상 분석</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-icon">🧑‍💼</div>
+        <div class="team-card-age">성인</div>
+        <div class="team-card-name">성인 동호회 팀</div>
+        <p class="team-card-desc">직장인·일반 성인을 위한 동호회 팀. 정기 훈련과 지역 사회인 리그에 함께 출전합니다.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">주 2회 훈련</span>
+          <span class="team-tag">사회인 리그</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-icon">🏆</div>
+        <div class="team-card-age">엘리트</div>
+        <div class="team-card-name">선발 팀</div>
+        <p class="team-card-desc">실력이 검증된 선수들로 구성되는 에스라 대표 팀. 전국 규모 대회를 목표로 집중 훈련합니다.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">선발 심사</span>
+          <span class="team-tag">전국 대회</span>
+          <span class="team-tag">심화 전술</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-icon">👩</div>
+        <div class="team-card-age">여성</div>
+        <div class="team-card-name">여성 팀</div>
+        <p class="team-card-desc">여성 수강생만을 위한 전용 팀. 안전하고 즐거운 환경에서 기술과 체력을 함께 키웁니다.</p>
+        <div class="team-card-tags">
+          <span class="team-tag">주 2회 훈련</span>
+          <span class="team-tag">여성 전용</span>
+          <span class="team-tag">친선 경기</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-banner reveal">
+      <div class="team-banner-text">
+        <h3>팀 합류에 관심이 있으신가요?</h3>
+        <p>연령·수준에 맞는 팀을 직접 추천해 드립니다. 체험 훈련은 무료로 참여할 수 있습니다.</p>
+      </div>
+      <a href="#contact" class="team-banner-btn">팀 참가 문의 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-eyebrow reveal">GALLERY</div>
+      <h2 class="section-title reveal reveal-d1">훈련 현장을<br><em>직접 확인하세요</em></h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gal-item">
+        <div class="gal-emoji">⚽</div>
+        <div class="gal-caption">주니어 드리블 훈련</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-emoji">🥅</div>
+        <div class="gal-caption">슈팅 클래스</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-emoji">🏃</div>
+        <div class="gal-caption">성인 체력 훈련</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-emoji">🤝</div>
+        <div class="gal-caption">팀 빌딩 게임</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-emoji">🏆</div>
+        <div class="gal-caption">교내 리그전 시상</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-emoji">👦</div>
+        <div class="gal-caption">키즈 첫 수업</div>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center; margin-top:1.5rem; font-size:.82rem; color:var(--mid); font-weight:300;">
+      실제 사진은 개설 후 순차적으로 업데이트됩니다
+    </p>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-eyebrow reveal">LOCATION</div>
+      <h2 class="section-title reveal reveal-d1">오시는 길 &<br><em>수업 일정</em></h2>
+    </div>
+    <div class="location-grid reveal">
+      <div>
+        <div class="info-block">
+          <div class="info-label">주소</div>
+          <div class="info-value">
+            서울특별시 마포구 상암동 월드컵로 123<br>
+            <span>에스라 풋볼 클럽 (상암 월드컵경기장 인근)</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">교통</div>
+          <div class="info-value">
+            지하철 6호선 월드컵경기장역 1번 출구<br>
+            <span>도보 5분 / 버스 271·672·7711번 상암동 하차</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">연락처</div>
+          <div class="info-value">
+            전화 02-1234-5678<br>
+            카카오톡 @ezrafootball<br>
+            <span>평일 14:00–21:00 / 주말 09:00–18:00</span>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">수업 일정</div>
+          <table class="schedule-table">
+            <tr><td>키즈 클래스</td><td>화·목 16:00 – 17:00</td></tr>
+            <tr><td>주니어 클래스</td><td>월·수·금 17:00 – 18:30</td></tr>
+            <tr><td>유스 클래스</td><td>월·수·금 18:30 – 20:00</td></tr>
+            <tr><td>성인 클래스</td><td>화·목 19:30 – 21:00</td></tr>
+            <tr><td>주말 성인반</td><td>토·일 10:00 – 12:00</td></tr>
+            <tr><td>1:1 개인 레슨</td><td>사전 예약제</td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="map-box">
+          <div class="map-placeholder">
+            <div class="map-icon">🗺️</div>
+            <p>지도가 여기에 표시됩니다</p>
+            <p style="font-size:.75rem; color:var(--border)">실제 서비스 시 카카오·Google 지도 연동</p>
+          </div>
+          <div class="map-info">
+            <div class="map-info-name">에스라 풋볼 클럽</div>
+            <div class="map-info-addr">서울 마포구 상암동 월드컵로 123</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-eyebrow reveal">APPLY</div>
+    <h2 class="section-title reveal reveal-d1">수강 신청 &<br><em>무료 체험 등록</em></h2>
+    <p class="section-desc reveal reveal-d2" style="max-width:100%">첫 수업은 무료로 체험하실 수 있습니다.<br>아래 양식을 작성해 주시면 담당 코치가 직접 연락드립니다.</p>
+
+    <div class="form-row reveal">
+      <div class="form-field">
+        <label class="form-label">이름</label>
+        <input id="f-name" class="form-input" type="text" placeholder="홍길동">
+      </div>
+      <div class="form-field">
+        <label class="form-label">연락처</label>
+        <input id="f-phone" class="form-input" type="tel" placeholder="010-0000-0000">
+      </div>
+      <div class="form-field">
+        <label class="form-label">이메일</label>
+        <input id="f-email" class="form-input" type="email" placeholder="example@email.com">
+      </div>
+      <div class="form-field">
+        <label class="form-label">수강생 나이</label>
+        <input id="f-age" class="form-input" type="number" placeholder="예) 12">
+      </div>
+      <div class="form-field full">
+        <label class="form-label">관심 프로그램</label>
+        <select id="f-program" class="form-select">
+          <option value="">-- 선택해 주세요 --</option>
+          <option>키즈 클래스 (5–8세)</option>
+          <option>주니어 클래스 (9–13세)</option>
+          <option>유스 클래스 (14–18세)</option>
+          <option>성인 클래스 (19세 이상)</option>
+          <option>1:1 개인 레슨</option>
+          <option>방학 집중 과정</option>
+          <option>── 팀 운영 ──</option>
+          <option>유소년 팀 (U-8·U-10)</option>
+          <option>주니어 팀 (U-12·U-14)</option>
+          <option>유스 팀 (U-16·U-18)</option>
+          <option>성인 동호회 팀</option>
+          <option>선발 팀</option>
+          <option>여성 팀</option>
+        </select>
+      </div>
+      <div class="form-field full">
+        <label class="form-label">문의 내용 (선택)</label>
+        <textarea id="f-msg" class="form-textarea" placeholder="궁금한 점이나 요청사항을 자유롭게 적어주세요."></textarea>
+      </div>
+    </div>
+    <button class="form-submit" onclick="handleSubmit()">무료 체험 신청하기 →</button>
+    <p class="form-note">신청 후 1–2일 내로 담당 코치가 연락드립니다.</p>
+    <div class="form-success" id="form-success">✅ 신청이 완료되었습니다! 곧 연락드리겠습니다.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-wrap">
+    <div class="footer-logo-mark">⚽</div>
+    <div>
+      <div class="footer-logo-kr">에스라 풋볼 클럽</div>
+      <div class="footer-logo-en">EZRA FOOTBALL CLUB</div>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#programs">프로그램</a>
+    <a href="#team">팀 운영</a>
+    <a href="#gallery">갤러리</a>
+    <a href="#location">오시는 길</a>
+    <a href="#contact">수강 신청</a>
+  </div>
+  <div class="footer-copy">© 2025 Ezra Football Club. All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Form submit
+  function handleSubmit() {
+    const name = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const program = document.getElementById('f-program').value;
+    if (!name || !phone || !program) {
+      alert('이름, 연락처, 프로그램을 입력해 주세요.');
+      return;
+    }
+    const btn = document.querySelector('.form-submit');
+    btn.disabled = true; btn.style.opacity = '.5';
+    document.getElementById('form-success').style.display = 'block';
+  }
+</script>
+</body>
+</html>
