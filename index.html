@@ -82,6 +82,26 @@ nav {
 }
 .nav-cta:hover { background: var(--green-hover) !important; color: white !important; }
 
+/* Hamburger toggle (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  background: transparent; border: none; cursor: pointer;
+  z-index: 101; flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block; width: 22px; height: 2px;
+  background: var(--ink); border-radius: 2px;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ── HERO ── */
 #hero {
   padding-top: 66px;
@@ -534,13 +554,62 @@ footer {
   #hero { grid-template-columns: 1fr; }
   .hero-right { display: none; }
   .hero-left { padding: 60px 6%; }
+  .hero-stats { flex-wrap: wrap; row-gap: 1.2rem; }
   .programs-grid, .programs-bottom { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
   .gal-item { grid-column: span 1 !important; height: 180px; }
   .location-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  nav ul { display: none; }
   footer { flex-direction: column; text-align: center; }
+
+  /* Hamburger nav */
+  .nav-toggle { display: flex; }
+  .nav-links {
+    position: fixed;
+    top: 66px; left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 16px 30px rgba(0,0,0,.06);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+  }
+  .nav-links.open { max-height: 420px; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block;
+    padding: 16px 6%;
+    border-bottom: 1px solid var(--light);
+    font-size: .95rem;
+  }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-cta {
+    margin: 14px 6% 18px;
+    padding: 12px 22px !important;
+    text-align: center;
+    width: calc(100% - 12%);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-wrap { padding: 70px 6%; }
+  #contact { padding: 70px 6%; }
+  .hero-left { padding: 50px 6% 44px; }
+  .hero-stats { gap: 1.4rem; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .hero-btns .btn { justify-content: center; }
+  .section-header { margin-bottom: 40px; }
+  .team-grid { grid-template-columns: 1fr; gap: 1.1rem; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gal-item { height: 190px; }
+  .prog-card { padding: 1.8rem 1.4rem; }
+  .team-banner { padding: 2rem 1.6rem; flex-direction: column; text-align: center; }
+  .map-placeholder { height: 220px; }
+  footer { padding: 40px 6%; }
 }
 </style>
 </head>
@@ -555,7 +624,10 @@ footer {
       <span class="nav-logo-en">EZRA FOOTBALL CLUB</span>
     </div>
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#programs">프로그램</a></li>
     <li><a href="#team">팀 운영</a></li>
     <li><a href="#gallery">갤러리</a></li>
@@ -965,6 +1037,28 @@ footer {
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Mobile hamburger nav
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  function setNavOpen(open) {
+    navLinks.classList.toggle('open', open);
+    navToggle.classList.toggle('active', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  navToggle.addEventListener('click', () => {
+    setNavOpen(!navLinks.classList.contains('open'));
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setNavOpen(false));
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) setNavOpen(false);
+  });
 
   // Form submit
   function handleSubmit() {
